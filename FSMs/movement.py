@@ -7,7 +7,7 @@ class MovementFSM(AbstractGameFSM):
     
     def __init__(self, obj):
         super().__init__(obj)
-    
+
     def update(self, seconds):
         super().update(seconds)
         size = self.obj.image.get_size()[self.axis]
@@ -27,7 +27,6 @@ class MovementFSM(AbstractGameFSM):
             except Exception:
                 pass
 
-
 class AccelerationFSM(MovementFSM):
     """Axis-based acceleration with gradual stopping."""
     not_moving = State(initial=True)
@@ -37,15 +36,12 @@ class AccelerationFSM(MovementFSM):
     
     stalemate = State()
     
-    decrease = not_moving.to(negative) | positive.to(stalemate) | stalemate.to(negative)
-    increase = not_moving.to(positive) | negative.to(stalemate) | stalemate.to(positive)
-    
-    stop_decrease = negative.to(not_moving) | stalemate.to(positive)
-    
-    stop_increase = positive.to(not_moving) | stalemate.to(negative)
-    
-    stop_all      = not_moving.to.itself(internal=True) | negative.to(not_moving) | \
-                    positive.to(not_moving) | stalemate.to(not_moving)
+    decrease = not_moving.to(negative) | positive.to(stalemate) | stalemate.to(negative) | negative.to.itself(internal=True)
+    increase = not_moving.to(positive) | negative.to(stalemate) | stalemate.to(positive) | positive.to.itself(internal=True)
+    stop_decrease = negative.to(not_moving) | stalemate.to(positive) | not_moving.to.itself(internal=True) | positive.to.itself(internal=True)
+    stop_increase = positive.to(not_moving) | stalemate.to(negative) | not_moving.to.itself(internal=True) | negative.to.itself(internal=True)
+    stop_all = not_moving.to.itself(internal=True) | negative.to(not_moving) | \
+            positive.to(not_moving) | stalemate.to(not_moving)
     
     def __init__(self, obj, axis=0):
         self.axis      = axis

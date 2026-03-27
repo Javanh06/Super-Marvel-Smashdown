@@ -40,7 +40,7 @@ def main():
                     RUNNING = False
         
         gameClock.tick(60)
-        seconds = gameClock.get_time() / 1000
+        seconds = min(0.03, gameClock.get_time() / 1000)
         screenManager.update(seconds)
      
     pygame.quit()

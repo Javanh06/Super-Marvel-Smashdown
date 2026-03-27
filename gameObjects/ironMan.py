@@ -63,7 +63,7 @@ class IronMan(Mobile):
       self.LR.update(seconds)
       self.jump.update(seconds)
       super().update(seconds)
-      
+      self.jump.postUpdate(getattr(self, 'platforms', []))
    
    
    def updateMovement(self):

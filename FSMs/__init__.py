@@ -4,3 +4,4 @@ from .movement import *
 from .screen import *
 from .jump import *
 from .ironManFSMs import IronManWalkingFSM, IronManJumpFSM, IronManLRFSM
+from .punchFSM import PunchFSM

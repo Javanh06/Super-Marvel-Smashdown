@@ -30,6 +30,8 @@ class WalkingFSM(AnimateFSM):
         
     
     def updateState(self):
+        if hasattr(self.obj, 'punch') and self.obj.punch.current_state.id == "punching":
+            return
         if self.hasVelocity() and self != "moving":
             self.move()
         elif not self.hasVelocity() and self != "standing":

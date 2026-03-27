@@ -34,20 +34,20 @@ class SpriteManager(object):
       
       # Static information about the sprite sizes of particular image sheets.
       _SPRITE_SIZES = {
-         "arrow.png" : (8,8), "cap.png" : (190,230), "ironMan.png" : (140,230)
+         "arrow.png" : (8,8), "cap2.png" : (64,95), "ironMan.png" : (140,230)
       }
       
       # A default sprite size
       _DEFAULT_SPRITE = (16,16)
       
       # A list of images that require to be loaded with transparency
-      _TRANSPARENCY = ["cap.png"]
+      _TRANSPARENCY = []
       
       # A list of images that require to be loaded with a color key
-      _COLOR_KEY = ["waddleDee.png", "arrow.png", "ironMan.png"]
+      _COLOR_KEY = ["waddleDee.png", "arrow.png", "cap2.png", "ironMan.png"]
 
       _SPRITE_SCALES = {
-         "cap.png": 0.5, "ironMan.png": 0.5
+         "cap2.png": 1, "ironMan.png": 0.5
       }
       
       def __init__(self):
